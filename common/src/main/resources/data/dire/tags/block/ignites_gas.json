@@ -1,0 +1,13 @@
+{
+  "values": [
+    "minecraft:fire",
+    "minecraft:torch",
+    "minecraft:wall_torch",
+    "minecraft:copper_torch",
+    "minecraft:copper_wall_torch",
+    "minecraft:campfire",
+    "minecraft:furnace",
+    "minecraft:smoker",
+    "minecraft:blast_furnace"
+  ]
+}

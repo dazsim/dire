@@ -1,0 +1,7 @@
+{
+  "block.dire.gas": "Gas",
+  "item.dire.bottle_of_gas": "Bottle of Gas",
+  "item.dire.gas_mask": "Gas Mask",
+  "death.attack.dire.gas": "%1$s choked on gas",
+  "death.attack.dire.gas.player": "%1$s choked on gas while fighting %2$s"
+}
