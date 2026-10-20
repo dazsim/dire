@@ -1,7 +1,8 @@
 {
   "ambientocclusion": false,
   "textures": {
-    "particle": "#gas"
+    "particle": "#gas",
+    "gas": "dire:block/gas_2"
   },
   "elements": [
     {
@@ -16,6 +17,7 @@
         16
       ],
       "shade": false,
+      "light_emission": 7,
       "faces": {
         "down": {
           "texture": "#gas",

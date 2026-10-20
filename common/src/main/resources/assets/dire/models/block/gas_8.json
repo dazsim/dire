@@ -1,0 +1,49 @@
+{
+  "ambientocclusion": false,
+  "textures": {
+    "particle": "#gas",
+    "gas": "dire:block/gas_8"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "shade": false,
+      "light_emission": 11,
+      "faces": {
+        "down": {
+          "texture": "#gas",
+          "cullface": "down"
+        },
+        "up": {
+          "texture": "#gas",
+          "cullface": "up"
+        },
+        "north": {
+          "texture": "#gas",
+          "cullface": "north"
+        },
+        "south": {
+          "texture": "#gas",
+          "cullface": "south"
+        },
+        "west": {
+          "texture": "#gas",
+          "cullface": "west"
+        },
+        "east": {
+          "texture": "#gas",
+          "cullface": "east"
+        }
+      }
+    }
+  ]
+}

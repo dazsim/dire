@@ -1,28 +1,28 @@
 {
-  "multipart": [
-    {
-      "when": {
-        "level": "1|2"
-      },
-      "apply": {
-        "model": "dire:block/gas_thin"
-      }
+  "variants": {
+    "level=1": {
+      "model": "dire:block/gas_1"
     },
-    {
-      "when": {
-        "level": "3|4|5"
-      },
-      "apply": {
-        "model": "dire:block/gas"
-      }
+    "level=2": {
+      "model": "dire:block/gas_2"
     },
-    {
-      "when": {
-        "level": "6|7|8"
-      },
-      "apply": {
-        "model": "dire:block/gas_thick"
-      }
+    "level=3": {
+      "model": "dire:block/gas_3"
+    },
+    "level=4": {
+      "model": "dire:block/gas_4"
+    },
+    "level=5": {
+      "model": "dire:block/gas_5"
+    },
+    "level=6": {
+      "model": "dire:block/gas_6"
+    },
+    "level=7": {
+      "model": "dire:block/gas_7"
+    },
+    "level=8": {
+      "model": "dire:block/gas_8"
     }
-  ]
+  }
 }
