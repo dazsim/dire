@@ -117,7 +117,7 @@ public final class Gas {
             if (burn(level, pos, state, d)) d.due.remove(pos.asLong());
             return;
         }
-        if (!level.hasNearbyAlivePlayer(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, DireConfig.activeRange)) {
+        if (!playerNear(level, pos)) {
             schedule(level, pos, random, 4);
             return;
         }
@@ -141,6 +141,7 @@ public final class Gas {
         if (!DireConfig.gasEnabled) decay = Math.max(decay, 0.25);
         if (random.nextDouble() < decay) lvl--;
 
+        boolean sank = false;
         if (lvl > 0) {
             BlockPos below = pos.below();
             BlockState bs = level.getBlockState(below);
@@ -148,18 +149,23 @@ public final class Gas {
                 level.setBlock(below, DireContent.GAS.withLevel(lvl), Block.UPDATE_CLIENTS);
                 d.changes++;
                 lvl = 0;
+                sank = true;
             } else if (isIdleGas(bs) && bs.getValue(GasBlock.LEVEL) < GasBlock.MAX_LEVEL) {
                 int move = Math.min(lvl, GasBlock.MAX_LEVEL - bs.getValue(GasBlock.LEVEL));
                 level.setBlock(below, bs.setValue(GasBlock.LEVEL, bs.getValue(GasBlock.LEVEL) + move), Block.UPDATE_CLIENTS);
                 d.changes++;
                 lvl -= move;
+                sank = true;
             }
         }
 
         if (lvl > 0) {
             int first = random.nextInt(4);
+            Direction downhill = sank ? null : downhill(level, pos, first);
             for (int i = 0; i < 4 && lvl > 0; i++) {
-                BlockPos np = pos.relative(HORIZONTAL[(first + i) % 4]);
+                Direction dir = HORIZONTAL[(first + i) % 4];
+                if (downhill != null && dir != downhill) continue;
+                BlockPos np = pos.relative(dir);
                 if (!level.isLoaded(np)) continue;
                 BlockState ns = level.getBlockState(np);
                 int other;
@@ -167,7 +173,7 @@ public final class Gas {
                 else if (isIdleGas(ns)) other = ns.getValue(GasBlock.LEVEL);
                 else continue;
                 int move = (lvl - other) / 2;
-                if (move <= 0 && other == 0 && level.getBlockState(np.below()).isAir()) move = lvl;
+                if (dir == downhill && other < lvl) move = Math.max(move, Math.min(lvl, 2));
                 if (move <= 0) continue;
                 if (other == 0) {
                     if (!roomInChunk(level, np, d)) continue;
@@ -190,6 +196,38 @@ public final class Gas {
         } else {
             schedule(level, pos, random, 2);
         }
+    }
+
+    private static final int SLOPE_DISTANCE = 4;
+
+    private static Direction downhill(ServerLevel level, BlockPos pos, int first) {
+        for (int dist = 1; dist <= SLOPE_DISTANCE; dist++) {
+            for (int i = 0; i < 4; i++) {
+                Direction dir = HORIZONTAL[(first + i) % 4];
+                BlockPos p = pos.relative(dir, dist);
+                if (!level.isLoaded(p)) continue;
+                if (!passable(level, pos, dir, dist)) continue;
+                BlockState below = level.getBlockState(p.below());
+                if (below.isAir() || (isIdleGas(below) && below.getValue(GasBlock.LEVEL) < GasBlock.MAX_LEVEL)) return dir;
+            }
+        }
+        return null;
+    }
+
+    private static boolean passable(ServerLevel level, BlockPos pos, Direction dir, int dist) {
+        for (int d = 1; d <= dist; d++) {
+            BlockState s = level.getBlockState(pos.relative(dir, d));
+            if (!s.isAir() && !isIdleGas(s)) return false;
+        }
+        return true;
+    }
+
+    private static boolean playerNear(ServerLevel level, BlockPos pos) {
+        double r = (double) DireConfig.activeRange * DireConfig.activeRange;
+        for (Player p : level.players()) {
+            if (p.distanceToSqr(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5) <= r) return true;
+        }
+        return false;
     }
 
     private static boolean isIdleGas(BlockState state) {

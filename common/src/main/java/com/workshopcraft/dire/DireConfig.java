@@ -20,8 +20,8 @@ public final class DireConfig {
     public static int activeRange = 48;
     public static int maxGasPerChunk = 256;
     public static int maxChangesPerTick = 200;
-    public static double decayChance = 0.03;
-    public static double openSkyDecayMultiplier = 4.0;
+    public static double decayChance = 0.008;
+    public static double openSkyDecayMultiplier = 3.0;
     public static boolean explosionsEnabled = true;
     public static boolean explosionsBreakBlocks = true;
     public static double maxExplosionPower = 2.5;
