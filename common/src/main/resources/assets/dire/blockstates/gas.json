@@ -1,7 +1,28 @@
 {
-  "variants": {
-    "": {
-      "model": "minecraft:block/air"
+  "multipart": [
+    {
+      "when": {
+        "level": "1|2"
+      },
+      "apply": {
+        "model": "dire:block/gas_thin"
+      }
+    },
+    {
+      "when": {
+        "level": "3|4|5"
+      },
+      "apply": {
+        "model": "dire:block/gas"
+      }
+    },
+    {
+      "when": {
+        "level": "6|7|8"
+      },
+      "apply": {
+        "model": "dire:block/gas_thick"
+      }
     }
-  }
+  ]
 }

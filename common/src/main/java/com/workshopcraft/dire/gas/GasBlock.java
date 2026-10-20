@@ -18,7 +18,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -58,8 +57,8 @@ public class GasBlock extends Block {
     }
 
     @Override
-    protected RenderShape getRenderShape(BlockState state) {
-        return RenderShape.INVISIBLE;
+    protected boolean skipRendering(BlockState state, BlockState neighbour, Direction direction) {
+        return neighbour.is(this) || super.skipRendering(state, neighbour, direction);
     }
 
     @Override
@@ -127,7 +126,7 @@ public class GasBlock extends Block {
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
         int lvl = state.getValue(LEVEL);
-        if (random.nextInt(32) <= lvl) {
+        if (random.nextInt(24) <= lvl) {
             level.addParticle(new DustParticleOptions(COLOR, 0.5F + lvl * 0.06F),
                     pos.getX() + random.nextDouble(), pos.getY() + random.nextDouble(), pos.getZ() + random.nextDouble(), 0.0, 0.0, 0.0);
         }

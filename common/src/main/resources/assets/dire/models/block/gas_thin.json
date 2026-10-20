@@ -1,0 +1,6 @@
+{
+  "parent": "dire:block/gas_base",
+  "textures": {
+    "gas": "dire:block/gas_thin"
+  }
+}
