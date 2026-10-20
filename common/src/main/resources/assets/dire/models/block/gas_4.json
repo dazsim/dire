@@ -17,7 +17,7 @@
         16
       ],
       "shade": false,
-      "light_emission": 8,
+      "light_emission": 9,
       "faces": {
         "down": {
           "texture": "#gas",
