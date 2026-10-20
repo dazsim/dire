@@ -36,7 +36,7 @@ public class GasBlock extends Block {
     public static final int MAX_LEVEL = 8;
     public static final IntegerProperty LEVEL = IntegerProperty.create("level", 1, MAX_LEVEL);
     public static final EnumProperty<GasPhase> PHASE = EnumProperty.create("phase", GasPhase.class);
-    private static final int COLOR = 0x8CBF3A;
+    private static final int COLOR = 0x93AE5A;
 
     public GasBlock(BlockBehaviour.Properties properties) {
         super(properties);
@@ -127,8 +127,8 @@ public class GasBlock extends Block {
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
         int lvl = state.getValue(LEVEL);
-        if (random.nextInt(12) < 2 + lvl) {
-            level.addParticle(new DustParticleOptions(COLOR, 0.9F + lvl * 0.12F),
+        if (random.nextInt(32) <= lvl) {
+            level.addParticle(new DustParticleOptions(COLOR, 0.5F + lvl * 0.06F),
                     pos.getX() + random.nextDouble(), pos.getY() + random.nextDouble(), pos.getZ() + random.nextDouble(), 0.0, 0.0, 0.0);
         }
         if (state.getValue(PHASE) == GasPhase.FUSE && random.nextInt(3) == 0) {
