@@ -9,7 +9,7 @@ Minecraft 26.1 to 26.1.x, NeoForge and Fabric (Fabric needs Fabric API).
 - Killing a zombie (or any zombie variant) leaves a small puff of gas. Killing a creeper leaves a bigger one. A creeper that explodes uses up its gas and leaves none.
 - Gas has 8 strength levels. It sinks first, then spreads sideways into weaker gas and looks a few blocks around for a drop to pour into, so it collects in pits and caves.
 - It fades slowly, faster under open sky. Water removes it.
-- You can see it as a faint green haze with a few drifting green specks.
+- You can see it as a sickly green haze, denser where the gas is stronger, with drifting green wisps. It glows faintly so you can spot it at night, but it gives off no real light.
 - Standing in gas hurts, more at higher strength. It can kill. All undead are immune. Creative and spectator players are safe.
 - Gas only moves and fades when a player is within 48 blocks.
 
