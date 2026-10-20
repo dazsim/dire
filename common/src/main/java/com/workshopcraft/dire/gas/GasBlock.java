@@ -2,9 +2,9 @@ package com.workshopcraft.dire.gas;
 
 import com.mojang.serialization.MapCodec;
 import com.workshopcraft.dire.DireConfig;
+import com.workshopcraft.dire.registry.DireContent;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -35,7 +35,6 @@ public class GasBlock extends Block {
     public static final int MAX_LEVEL = 8;
     public static final IntegerProperty LEVEL = IntegerProperty.create("level", 1, MAX_LEVEL);
     public static final EnumProperty<GasPhase> PHASE = EnumProperty.create("phase", GasPhase.class);
-    private static final int COLOR = 0x93AE5A;
 
     public GasBlock(BlockBehaviour.Properties properties) {
         super(properties);
@@ -126,9 +125,10 @@ public class GasBlock extends Block {
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
         int lvl = state.getValue(LEVEL);
-        if (random.nextInt(24) <= lvl) {
-            level.addParticle(new DustParticleOptions(COLOR, 0.5F + lvl * 0.06F),
-                    pos.getX() + random.nextDouble(), pos.getY() + random.nextDouble(), pos.getZ() + random.nextDouble(), 0.0, 0.0, 0.0);
+        boolean top = !level.getBlockState(pos.above()).is(this);
+        if (random.nextInt(top ? 16 : 48) <= lvl) {
+            double y = top ? 0.5 + random.nextDouble() * 0.7 : random.nextDouble();
+            level.addParticle(DireContent.GAS_WISP, pos.getX() + random.nextDouble(), pos.getY() + y, pos.getZ() + random.nextDouble(), 0.0, 0.0, 0.0);
         }
         if (state.getValue(PHASE) == GasPhase.FUSE && random.nextInt(3) == 0) {
             level.addParticle(ParticleTypes.SMOKE, pos.getX() + random.nextDouble(), pos.getY() + random.nextDouble(), pos.getZ() + random.nextDouble(), 0.0, 0.02, 0.0);

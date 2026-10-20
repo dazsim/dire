@@ -10,6 +10,9 @@
     "license": "${license}",
     "environment": "*",
     "entrypoints": {
+        "client": [
+            "com.workshopcraft.dire.fabric.DireFabricClient"
+        ],
         "main": [
             "com.workshopcraft.dire.fabric.DireFabric"
         ]

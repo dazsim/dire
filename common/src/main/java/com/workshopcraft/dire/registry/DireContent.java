@@ -4,6 +4,8 @@ import com.workshopcraft.dire.Dire;
 import com.workshopcraft.dire.gas.GasBlock;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.particles.ParticleType;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
@@ -41,6 +43,7 @@ public final class DireContent {
     public static GasBlock GAS;
     public static Item BOTTLE_OF_GAS;
     public static Item GAS_MASK;
+    public static final SimpleParticleType GAS_WISP = new SimpleParticleType(false) {};
 
     private DireContent() {}
 
@@ -68,6 +71,10 @@ public final class DireContent {
         r.accept(Dire.id("gas_mask"), GAS_MASK);
     }
 
+    public static void registerParticles(BiConsumer<Identifier, ParticleType<?>> r) {
+        r.accept(Dire.id("gas_wisp"), GAS_WISP);
+    }
+
     public static <T> BiConsumer<Identifier, T> direct(Registry<? super T> registry) {
         return (id, value) -> Registry.register(registry, id, value);
     }
@@ -75,5 +82,6 @@ public final class DireContent {
     public static void registerAllDirect() {
         registerBlocks(direct(BuiltInRegistries.BLOCK));
         registerItems(direct(BuiltInRegistries.ITEM));
+        registerParticles(direct(BuiltInRegistries.PARTICLE_TYPE));
     }
 }

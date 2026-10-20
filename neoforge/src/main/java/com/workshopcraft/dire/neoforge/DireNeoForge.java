@@ -28,6 +28,7 @@ public class DireNeoForge {
     private static void onRegister(RegisterEvent e) {
         e.register(Registries.BLOCK, h -> DireContent.registerBlocks(h::register));
         e.register(Registries.ITEM, h -> DireContent.registerItems(h::register));
+        e.register(Registries.PARTICLE_TYPE, h -> DireContent.registerParticles(h::register));
     }
 
     private static void onTabs(BuildCreativeModeTabContentsEvent e) {
