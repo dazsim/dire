@@ -174,6 +174,7 @@ public final class Gas {
                 else continue;
                 int move = (lvl - other) / 2;
                 if (dir == downhill && other < lvl) move = Math.max(move, Math.min(lvl, 2));
+                move = Math.min(move, GasBlock.MAX_LEVEL - other);
                 if (move <= 0) continue;
                 if (other == 0) {
                     if (!roomInChunk(level, np, d)) continue;
