@@ -15,7 +15,7 @@ Minecraft 26.1 to 26.1.x, NeoForge and Fabric (Fabric needs Fabric API).
 
 ## Fire
 
-Torches, wall torches, copper torches, campfires, fire, lava, lit furnaces, smokers and blast furnaces, flint and steel, fire charges, burning arrows and anything on fire set gas off. Lanterns, soul torches, soul lanterns and soul campfires are safe.
+Torches, wall torches, copper torches, campfires, fire, lava, lit furnaces, smokers and blast furnaces, lit candles and lit candle cakes, flint and steel, fire charges, burning arrows and anything on fire set gas off. Lanterns, soul torches, soul lanterns and soul campfires are safe.
 
 A flame in gas hisses like a creeper for about 1.5 seconds, then the gas burns. The burn spreads block to block through the whole cloud as a wave of small creeper-like blasts, so a big pool covers more ground and does more damage than a small one. Blasts break blocks unless the mobGriefing gamerule is off or block breaking is turned off in the config. TNT and other explosions that break blocks also set gas off.
 
