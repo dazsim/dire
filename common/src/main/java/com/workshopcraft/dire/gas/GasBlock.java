@@ -105,12 +105,19 @@ public class GasBlock extends Block {
     @Override
     protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier effects, boolean isPrecise) {
         if (!(level instanceof ServerLevel server)) return;
-        if (entity.isOnFire() && DireConfig.explosionsEnabled && state.getValue(PHASE) == GasPhase.IDLE) {
+        if (DireConfig.explosionsEnabled && state.getValue(PHASE) == GasPhase.IDLE
+                && (entity.isOnFire() || (entity instanceof LivingEntity held && holdsFlame(held)))) {
             Gas.startFuse(server, pos, state);
         }
         if (entity instanceof LivingEntity living && (living.tickCount + living.getId()) % 20 == 0) {
             Gas.hurt(server, living, state.getValue(LEVEL));
         }
+    }
+
+    // Checked every 4 ticks; covers every gas block the entity's box touches (feet and head).
+    private static boolean holdsFlame(LivingEntity entity) {
+        if (!DireConfig.heldTorchIgnites || (entity.tickCount + entity.getId()) % 4 != 0) return false;
+        return entity.getMainHandItem().is(DireContent.HELD_IGNITES_GAS) || entity.getOffhandItem().is(DireContent.HELD_IGNITES_GAS);
     }
 
     @Override

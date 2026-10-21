@@ -29,6 +29,7 @@ public final class DireConfig {
     public static boolean chainIgnition = true;
     public static boolean torchesIgnite = true;
     public static boolean placedTorchesIgnite = true;
+    public static boolean heldTorchIgnites = true;
     public static int fuseTicks = 30;
     public static int gasMaskWearPerSecond = 1;
 
@@ -56,6 +57,7 @@ public final class DireConfig {
         e("chainIgnition", "Burning gas sets off the gas next to it, so a whole cloud goes up. When false only the gas touching the flame burns.");
         e("torchesIgnite", "Placing a torch or other open flame in or next to gas ignites it.");
         e("placedTorchesIgnite", "Gas that reaches an already placed torch or other open flame ignites.");
+        e("heldTorchIgnites", "A player or mob holding a torch (item tag dire:held_ignites_gas) in either hand ignites gas it is standing in.");
         e("fuseTicks", "Ticks of creeper hiss before gas touched by a flame ignites.");
         e("gasMaskWearPerSecond", "Durability a gas mask loses per second spent in gas.");
     }

@@ -15,7 +15,7 @@ Minecraft 26.1 to 26.1.x, NeoForge and Fabric (Fabric needs Fabric API).
 
 ## Fire
 
-Torches, wall torches, copper torches, campfires, fire, lava, lit furnaces, smokers and blast furnaces, lit candles and lit candle cakes, flint and steel, fire charges, burning arrows and anything on fire set gas off. Lanterns, soul torches, soul lanterns and soul campfires are safe.
+Torches, wall torches, copper torches, campfires, fire, lava, lit furnaces, smokers and blast furnaces, lit candles and lit candle cakes, flint and steel, fire charges, burning arrows and anything on fire set gas off. So does a player or mob holding a torch or copper torch in either hand while standing in gas. Lanterns, soul torches, soul lanterns and soul campfires are safe, placed or held.
 
 A flame in gas hisses like a creeper for about 1.5 seconds, then the gas burns. The burn spreads block to block through the whole cloud as a wave of small creeper-like blasts, so a big pool covers more ground and does more damage than a small one. Blasts break blocks unless the mobGriefing gamerule is off or block breaking is turned off in the config. TNT and other explosions that break blocks also set gas off.
 
@@ -36,9 +36,9 @@ L = leather, N = iron nugget, F = charcoal or dried kelp.
 
 ## Config
 
-`config/dire.properties` is written on first start, with a comment for every setting. It covers the gas amounts, damage, update rates, range and caps (per chunk, per tick, blasts per tick), decay, explosions, block breaking, torch ignition (`torchesIgnite`, `placedTorchesIgnite`) and gas mask wear.
+`config/dire.properties` is written on first start, with a comment for every setting. It covers the gas amounts, damage, update rates, range and caps (per chunk, per tick, blasts per tick), decay, explosions, block breaking, torch ignition (`torchesIgnite`, `placedTorchesIgnite`, `heldTorchIgnites`) and gas mask wear.
 
-The block tag `dire:ignites_gas` lists the flames that set gas off, and the entity tags `dire:releases_small_gas` and `dire:releases_large_gas` list the mobs that leave gas behind.
+The block tag `dire:ignites_gas` lists the flames that set gas off, the item tag `dire:held_ignites_gas` lists the items that set it off when held, and the entity tags `dire:releases_small_gas` and `dire:releases_large_gas` list the mobs that leave gas behind.
 
 ## Building
 

@@ -30,6 +30,7 @@ public final class DireContent {
     public static final TagKey<Block> IGNITES_GAS = TagKey.create(Registries.BLOCK, Dire.id("ignites_gas"));
     public static final TagKey<EntityType<?>> SMALL_GAS_SOURCES = TagKey.create(Registries.ENTITY_TYPE, Dire.id("releases_small_gas"));
     public static final TagKey<EntityType<?>> LARGE_GAS_SOURCES = TagKey.create(Registries.ENTITY_TYPE, Dire.id("releases_large_gas"));
+    public static final TagKey<Item> HELD_IGNITES_GAS = TagKey.create(Registries.ITEM, Dire.id("held_ignites_gas"));
     public static final TagKey<Item> REPAIRS_GAS_MASK = TagKey.create(Registries.ITEM, Dire.id("repairs_gas_mask"));
     public static final ResourceKey<DamageType> GAS_DAMAGE = ResourceKey.create(Registries.DAMAGE_TYPE, Dire.id("gas"));
 
